@@ -73,9 +73,7 @@ Prerrequisitos:
 
 Pasos para ejecutar:
  1. Instalar dependencias:
-  npm install vuex
-  npm install router
-  npm install vuetify
+  npm install y si no funciona por conflicto de dependencias usa npm install --legacy-peer-deps
 
  2.Ejecutar la aplicación de forma local o network:
   npm run serve
