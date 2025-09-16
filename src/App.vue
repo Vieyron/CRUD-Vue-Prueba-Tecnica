@@ -1,26 +1,54 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <v-app>
+    <v-app-bar app color="primary" dark>
+      <v-toolbar-title>
+        <v-icon class="mr-2">mdi-account-cog</v-icon>
+        Gestor de Clientes
+      </v-toolbar-title>
+    </v-app-bar>
+    
+    <v-main>
+      <v-container>
+        <router-view></router-view>
+      </v-container>
+    </v-main>
+
+    <!-- Snackbar global para notificaciones -->
+    <v-snackbar
+      v-model="snackbar"
+      :color="snackbarColor"
+      :timeout="snackbarTimeout"
+      location="top"
+      multi-line
+    >
+      {{ snackbarText }}
+      
+      <template v-slot:actions>
+        <v-btn
+          variant="text"
+          @click="snackbar = false"
+        >
+          <v-icon>mdi-close</v-icon>
+        </v-btn>
+      </template>
+    </v-snackbar>
+  </v-app>
 </template>
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
+<script setup>
+import { useSnackbar } from './composables/useSnackbar'
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+const { snackbar, snackbarText, snackbarColor, snackbarTimeout } = useSnackbar()
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
 }
 </style>
